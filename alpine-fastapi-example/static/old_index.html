@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Todo List</title>
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+</head>
+<body
+  x-data="{
+    todos: [],
+  }"
+>
+
+  <h1>Todo List</h1>
+
+  <div x-data="{ newTodo: '' }">
+    <input
+      x-model="newTodo"
+      placeholder="New todo"
+      name="new-todo"
+      x-ref="addTodoBox"
+      @keyup.enter="
+        if (newTodo.trim()) {
+            todos.push({ id: Date.now(), name: newTodo });
+            newTodo = '';
+        }
+      "
+    />
+  </div>
+
+  <ul>
+    <template x-for="(todo, index) in todos" :key="todo.id">
+      <li>
+        <span x-text="todo.name"></span>
+        <button @click="removeTodo(todo.id, todo.name); todos.splice(index, 1)">❌</button>
+      </li>
+    </template>
+  </ul>
+
+  <p x-show="todos.length === 0">No todos</p>
+
+</body>
+</html>

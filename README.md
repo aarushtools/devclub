@@ -1,1 +1,1 @@
-`alpine-fastapi-example` - AlpineJS lecture 06/02/2025
+`alpine-fastapi-example` - AlpineJS lecture 06/03/2025
